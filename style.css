@@ -18,7 +18,8 @@
   width: 2rem;
 }
 
-.timing {
+.timing,
+.slider {
   width: 100%;
 }
 
