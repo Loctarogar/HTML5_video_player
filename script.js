@@ -1,8 +1,9 @@
-const play = document.querySelector(".fa-play");
-const pause = document.querySelector(".fa-pause");
-const stop = document.querySelector(".fa-stop");
-const fullscreenOn = document.querySelector(".fa-expand");
-const fullscreenOff = document.querySelector(".fa-compress");
+const playButton = document.querySelector(".fa-play");
+const pauseButton = document.querySelector(".fa-pause");
+const stopButton = document.querySelector(".fa-stop");
+const slider = document.querySelector(".slider");
+const fullscreenOnButton = document.querySelector(".fa-expand");
+const fullscreenOffButton = document.querySelector(".fa-compress");
 
 const iconPause = "fa-pause";
 const iconPlay = "fa-play";
@@ -11,12 +12,20 @@ const hiddenClass = "hidden";
 const video = document.querySelector("video");
 const duration = video.duration;
 
-play.addEventListener("click", videoPlay.bind(null, iconPlay));
-pause.addEventListener("click", videoPlay.bind(null, iconPause));
+playButton.addEventListener("click", () => {
+  videoPlay(iconPlay);
+});
+pauseButton.addEventListener("click", () => {
+  videoPlay(iconPause);
+});
+stopButton.addEventListener("click", () => {
+  video.load();
+  videoPlay(iconPause);
+});
+slider.addEventListener("change", () => {});
 
 function videoPlay(command) {
-  if (command == "fa-play") {
-    console.log("play");
+  if (command == iconPlay) {
     video.play();
   } else {
     video.pause();
@@ -26,6 +35,6 @@ function videoPlay(command) {
 }
 
 function changeIcon(icon) {
-  play.classList.toggle(hiddenClass);
-  pause.classList.toggle(hiddenClass);
+  playButton.classList.toggle(hiddenClass);
+  pauseButton.classList.toggle(hiddenClass);
 }
