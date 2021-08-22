@@ -4,4 +4,4 @@ function videoPlay() {
   video.play();
 }
 
-videoPlay();
+// videoPlay();
