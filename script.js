@@ -10,7 +10,8 @@ const iconPlay = "fa-play";
 const hiddenClass = "hidden";
 
 const video = document.querySelector("video");
-const duration = video.duration;
+const duration = Math.floor(video.duration);
+slider.max = duration;
 
 playButton.addEventListener("click", () => {
   videoPlay(iconPlay);
@@ -22,7 +23,9 @@ stopButton.addEventListener("click", () => {
   video.load();
   videoPlay(iconPause);
 });
-slider.addEventListener("change", () => {});
+slider.addEventListener("change", () => {
+  video.currentTime = slider.value;
+});
 
 function videoPlay(command) {
   if (command == iconPlay) {
