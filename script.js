@@ -12,19 +12,20 @@ const hiddenClass = "hidden";
 const video = document.querySelector("video");
 const duration = Math.floor(video.duration);
 slider.max = duration;
+console.log(slider.max);
 
 playButton.addEventListener("click", () => {
   videoPlay(iconPlay);
+  setInterval(sliderMover, 1000);
 });
 pauseButton.addEventListener("click", () => {
   videoPlay(iconPause);
 });
-stopButton.addEventListener("click", () => {
-  video.load();
-  videoPlay(iconPause);
-});
+stopButton.addEventListener("click", videoStop);
+
 slider.addEventListener("change", () => {
   video.currentTime = slider.value;
+  console.log(slider.value);
 });
 
 function videoPlay(command) {
@@ -40,4 +41,17 @@ function videoPlay(command) {
 function changeIcon(icon) {
   playButton.classList.toggle(hiddenClass);
   pauseButton.classList.toggle(hiddenClass);
+}
+
+function videoStop() {
+  video.load();
+  slider.value = 0;
+  videoPlay(iconPause);
+}
+
+function sliderMover() {
+  slider.value = Math.floor(video.currentTime);
+  if (slider.value == slider.max) {
+    videoStop();
+  }
 }
